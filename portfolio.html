@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keerthana Suresh — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2744;--gold:#c9a84c;--gold-light:#f0dfa0;--gold-faint:rgba(201,168,76,0.12);--cream:#faf8f4;--white:#ffffff;--text:#1e1e1c;--muted:#6b6b67;--border:rgba(201,168,76,0.2);--bdark:rgba(26,39,68,0.12)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);font-size:15px;line-height:1.6}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:52px;border-bottom:1px solid rgba(201,168,76,0.15)}
+.nav-brand{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold-light)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.hero{background:var(--navy);padding:5rem 3rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,168,76,0.12)}
+.hero::after{content:'';position:absolute;bottom:-80px;left:38%;width:200px;height:200px;border-radius:50%;border:1px solid rgba(201,168,76,0.08)}
+.hi{max-width:900px;margin:0 auto;position:relative}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.hero h1{font-family:'Playfair Display',serif;font-size:58px;font-weight:700;color:#fff;line-height:1.05;margin-bottom:14px}
+.tagline{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);letter-spacing:.04em;margin-bottom:32px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.chip{font-size:11px;font-weight:500;padding:5px 14px;border-radius:20px;border:.5px solid rgba(201,168,76,.4);color:rgba(240,223,160,.85)}
+.hcontact{display:flex;flex-wrap:wrap;gap:20px;border-top:.5px solid rgba(201,168,76,.15);padding-top:24px}
+.cl{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.45)}
+.cdot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.cl a{color:rgba(240,223,160,.75);text-decoration:none}
+.wrap{max-width:900px;margin:0 auto;padding:0 3rem}
+.sec{padding:3.5rem 0;border-bottom:.5px solid var(--bdark)}
+.sec:last-child{border-bottom:none}
+.sh{display:flex;align-items:baseline;gap:16px;margin-bottom:2rem}
+.sl{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+.sr{flex:1;height:.5px;background:var(--border)}
+.st{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.si{font-size:14px;color:var(--muted);max-width:640px;line-height:1.7;margin-bottom:2rem}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.scard{background:var(--white);border:.5px solid var(--bdark);border-radius:12px;padding:1.5rem 1.25rem;text-align:center;position:relative;overflow:hidden}
+.scard::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--gold)}
+.snum{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:8px}
+.sdesc{font-size:12px;color:var(--muted);line-height:1.4}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.cc{background:var(--white);border:.5px solid var(--bdark);border-radius:14px;padding:1.5rem}
+.cc.full{grid-column:1/-1}
+.ct{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.cs{font-size:11px;color:var(--muted);margin-bottom:1.25rem}
+.cw{position:relative}
+.sbars{display:flex;flex-direction:column;gap:14px}
+.sbi{}
+.sbh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.sbn{font-size:13px;color:var(--navy)}
+.sbp{font-size:11px;color:var(--muted);font-weight:500}
+.sbtrack{height:5px;background:rgba(26,39,68,.08);border-radius:3px;overflow:hidden}
+.sbfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--navy),var(--gold));transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0}
+.heatgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.hc{background:var(--white);border:.5px solid var(--bdark);border-radius:8px;padding:10px 8px;text-align:center}
+.hc.l1{background:rgba(26,39,68,.06)}
+.hc.l2{background:rgba(26,39,68,.13)}
+.hc.l3{background:rgba(26,39,68,.22)}
+.hc.l4{background:var(--navy)}
+.hc.l4 .hn{color:var(--gold-light)}
+.hc.l4 .hcat{color:rgba(240,223,160,.6)}
+.hn{font-size:11px;font-weight:500;color:var(--navy);margin-bottom:3px}
+.hcat{font-size:10px;color:var(--muted)}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.atext{font-size:14px;color:var(--muted);line-height:1.85}
+.atext p{margin-bottom:1rem}
+.comps{display:flex;flex-direction:column;gap:8px}
+.comp{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
+.cpdot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.tl{position:relative}
+.tlspine{position:absolute;left:9px;top:6px;bottom:6px;width:.5px;background:var(--border)}
+.tli{display:flex;gap:2rem;margin-bottom:3rem;position:relative}
+.tli:last-child{margin-bottom:0}
+.tlm{flex-shrink:0;position:relative;z-index:1}
+.tldot{width:20px;height:20px;border-radius:50%;background:var(--white);border:2px solid var(--bdark);margin-top:4px}
+.tldot.cur{background:var(--navy);border-color:var(--gold)}
+.tlb{flex:1}
+.tlco{font-size:12px;font-weight:500;color:var(--gold);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.tlr{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.tlm2{font-size:12px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.tlabout{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;padding:10px 14px;background:var(--gold-faint);border-left:2px solid var(--gold);border-radius:0 6px 6px 0}
+.tlul{list-style:none}
+.tlul li{font-size:13px;color:#4a4a47;padding:4px 0 4px 18px;position:relative;line-height:1.6}
+.tlul li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:11px}
+.bwrap{display:flex;flex-direction:column;gap:2rem}
+.bgc{background:var(--white);border:.5px solid var(--bdark);border-radius:14px;overflow:hidden}
+.bgch{background:var(--navy);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.bgct{font-size:13px;font-weight:500;color:var(--gold-light)}
+.bgcp{font-size:11px;color:rgba(255,255,255,.4)}
+.bgcb{padding:20px}
+.bpills{display:flex;flex-wrap:wrap;gap:8px}
+.bp{font-size:12px;font-weight:500;padding:6px 14px;border-radius:20px;border:.5px solid var(--bdark);color:var(--navy);background:var(--cream)}
+.bph{background:var(--navy);color:var(--gold-light);border-color:var(--navy)}
+.bpm{background:rgba(26,39,68,.06);border-color:rgba(26,39,68,.15)}
+.skgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skc{background:var(--white);border:.5px solid var(--bdark);border-radius:12px;padding:1.25rem}
+.skih{width:36px;height:36px;background:rgba(26,39,68,.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px}
+.skn{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px}
+.skd{font-size:12px;color:var(--muted);line-height:1.5}
+.techrow{display:flex;flex-wrap:wrap;gap:10px}
+.tp{font-size:12px;font-weight:500;padding:7px 16px;border-radius:6px;background:var(--navy);color:var(--gold-light)}
+.tp.sec2{background:var(--white);color:var(--navy);border:.5px solid var(--bdark)}
+.ecards{display:flex;flex-direction:column;gap:12px}
+.ecard{background:var(--white);border:.5px solid var(--bdark);border-radius:12px;padding:1.25rem}
+.edeg{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.esch{font-size:12px;color:var(--muted)}
+.certlist{display:flex;flex-direction:column;gap:10px}
+.certi{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--white);border:.5px solid var(--bdark);border-radius:10px}
+.certb{width:24px;height:24px;border-radius:50%;background:var(--gold-faint);border:.5px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
+.certn{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px}
+.certi2{font-size:11px;color:var(--muted)}
+.lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.lc{background:var(--white);border:.5px solid var(--bdark);border-radius:10px;padding:1rem;text-align:center}
+.ln{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.ll{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.qsec{background:var(--navy);padding:3rem}
+.qi{max-width:900px;margin:0 auto}
+.qmark{font-family:'Playfair Display',serif;font-size:60px;line-height:.6;color:var(--gold);opacity:.4;margin-bottom:8px}
+.qtxt{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:rgba(255,255,255,.8);line-height:1.75;max-width:660px;margin-bottom:20px}
+.qsig{font-size:12px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+footer{background:#111825;padding:2rem 3rem}
+.fi{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fn{font-size:13px;font-weight:500;color:rgba(255,255,255,.4)}
+.flinks{display:flex;gap:20px}
+.flinks a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--gold)}
+@media(max-width:700px){nav{padding:0 1.5rem}.nav-links{display:none}.hero{padding:3rem 1.5rem}.hero h1{font-size:38px}.wrap{padding:0 1.5rem}.sgrid{grid-template-columns:1fr 1fr}.cgrid{grid-template-columns:1fr}.agrid{grid-template-columns:1fr}.skgrid{grid-template-columns:1fr 1fr}.lgrid{grid-template-columns:1fr 1fr}.heatgrid{grid-template-columns:repeat(3,1fr)}.qsec{padding:2rem 1.5rem}footer{padding:1.5rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Keerthana Suresh</div>
+  <div class="nav-links">
+    <a href="#metrics">Metrics</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#brands">Brands</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hi">
+    <div class="eyebrow">Professional Portfolio · 2026</div>
+    <h1>Keerthana<br>Suresh</h1>
+    <div class="tagline">Buying &amp; Merchandising Manager &nbsp;·&nbsp; E-commerce &amp; Retail Strategy &nbsp;·&nbsp; UAE</div>
+    <div class="chips">
+      <span class="chip">7 Years Experience</span>
+      <span class="chip">UAE &amp; India Markets</span>
+      <span class="chip">Marketplace Buying</span>
+      <span class="chip">34 Global Brands</span>
+      <span class="chip">Fashion · Beauty · Home · Sports</span>
+      <span class="chip">Data-Driven Merchandising</span>
+    </div>
+    <div class="hcontact">
+      <div class="cl"><div class="cdot"></div><span>+971 503 019 357</span></div>
+      <div class="cl"><div class="cdot"></div><a href="mailto:keerthanasuresh788@gmail.com">keerthanasuresh788@gmail.com</a></div>
+      <div class="cl"><div class="cdot"></div><a href="https://linkedin.com/in/keerthana-suresh-0b20891a0" target="_blank">linkedin.com/in/keerthana-suresh-0b20891a0</a></div>
+      <div class="cl"><div class="cdot"></div><span>UAE · Work Visa · Valid Jul 2035</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STATS -->
+  <div class="sec" id="stats">
+    <div class="sh"><span class="sl">At a glance</span><div class="sr"></div></div>
+    <div class="sgrid">
+      <div class="scard"><div class="snum">7+</div><div class="sdesc">Years in retail buying &amp; merchandising</div></div>
+      <div class="scard"><div class="snum">34</div><div class="sdesc">Global brands managed across all roles</div></div>
+      <div class="scard"><div class="snum">3</div><div class="sdesc">Major retail organisations across UAE &amp; India</div></div>
+      <div class="scard"><div class="snum">4</div><div class="sdesc">Categories: Fashion, Beauty, Home, Sports</div></div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="sec" id="metrics">
+    <div class="sh"><span class="sl">Metrics &amp; Insights</span><div class="sr"></div></div>
+    <div class="st">Career Analytics</div>
+    <div class="si">A data view of career progression, skill depth, brand portfolio scope, and professional growth across 7+ years in retail buying.</div>
+
+    <div class="cgrid">
+      <div class="cc">
+        <div class="ct">Career Tenure by Organisation</div>
+        <div class="cs">Months spent at each employer</div>
+        <div class="cw" style="height:200px"><canvas id="tenureChart"></canvas></div>
+      </div>
+      <div class="cc">
+        <div class="ct">Core Skills Radar</div>
+        <div class="cs">Competency depth across buying functions</div>
+        <div class="cw" style="height:200px"><canvas id="radarChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="cgrid">
+      <div class="cc">
+        <div class="ct">Category Experience Mix</div>
+        <div class="cs">Distribution of buying experience by product category</div>
+        <div class="cw" style="height:210px"><canvas id="categoryChart"></canvas></div>
+      </div>
+      <div class="cc">
+        <div class="ct">Brand Portfolio by Role</div>
+        <div class="cs">Number of brands managed per position</div>
+        <div class="cw" style="height:210px"><canvas id="brandCountChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="cgrid">
+      <div class="cc">
+        <div class="ct">Technical &amp; Analytical Skills</div>
+        <div class="cs">Proficiency across tools and methodologies</div>
+        <div class="sbars">
+          <div class="sbi"><div class="sbh"><span class="sbn">MS Excel (Advanced)</span><span class="sbp">95%</span></div><div class="sbtrack"><div class="sbfill" data-w="95"></div></div></div>
+          <div class="sbi"><div class="sbh"><span class="sbn">Vendor Negotiation</span><span class="sbp">92%</span></div><div class="sbtrack"><div class="sbfill" data-w="92"></div></div></div>
+          <div class="sbi"><div class="sbh"><span class="sbn">Assortment Planning</span><span class="sbp">90%</span></div><div class="sbtrack"><div class="sbfill" data-w="90"></div></div></div>
+          <div class="sbi"><div class="sbh"><span class="sbn">Inventory Management</span><span class="sbp">90%</span></div><div class="sbtrack"><div class="sbfill" data-w="90"></div></div></div>
+          <div class="sbi"><div class="sbh"><span class="sbn">Visual Merchandising</span><span class="sbp">88%</span></div><div class="sbtrack"><div class="sbfill" data-w="88"></div></div></div>
+          <div class="sbi"><div class="sbh"><span class="sbn">SQL</span><span class="sbp">82%</span></div><div class="sbtrack"><div class="sbfill" data-w="82"></div></div></div>
+          <div class="sbi"><div class="sbh"><span class="sbn">Python (Data Analysis)</span><span class="sbp">78%</span></div><div class="sbtrack"><div class="sbfill" data-w="78"></div></div></div>
+        </div>
+      </div>
+      <div class="cc">
+        <div class="ct">Retail Format Exposure</div>
+        <div class="cs">Experience across different retail channels</div>
+        <div class="cw" style="height:240px"><canvas id="formatChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="cgrid">
+      <div class="cc full">
+        <div class="ct">Career Progression — Seniority &amp; Portfolio Growth</div>
+        <div class="cs">Role seniority level and brand portfolio size over time (2019–2026)</div>
+        <div class="cw" style="height:180px"><canvas id="progressionChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="cc" style="margin-top:0">
+      <div class="ct" style="margin-bottom:4px">Brand Portfolio Heatmap</div>
+      <div class="cs">Depth of buying involvement — darker = deeper engagement and negotiation responsibility</div>
+      <div class="heatgrid" id="heatmap"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="sec" id="about">
+    <div class="sh"><span class="sl">About</span><div class="sr"></div></div>
+    <div class="st">Professional Summary</div>
+    <div class="agrid">
+      <div class="atext">
+        <p>Strategic and results-driven Buying and Merchandising professional with 7+ years of experience across leading retail and e-commerce organisations in the UAE and India.</p>
+        <p>Expert in developing comprehensive merchandising strategies, optimizing product assortments, and managing end-to-end buying operations — from initial vendor discovery through to seasonal clearance.</p>
+        <p>Proven track record in space planning, visual merchandising execution, inventory optimization, and building strong vendor partnerships that deliver margin growth and category leadership.</p>
+        <p>Strong analytical background leveraging Excel, SQL, and Python to drive data-informed merchandising decisions that maximize profitability and enhance customer experience.</p>
+      </div>
+      <div>
+        <div class="sl" style="margin-bottom:14px">Core Competencies</div>
+        <div class="comps">
+          <div class="comp"><div class="cpdot"></div>Strategic Buying &amp; Merchandising Planning</div>
+          <div class="comp"><div class="cpdot"></div>Product Assortment &amp; Space Allocation</div>
+          <div class="comp"><div class="cpdot"></div>Vendor Negotiation &amp; Supplier Partnerships</div>
+          <div class="comp"><div class="cpdot"></div>Seasonal Merchandise Flow &amp; Allocation</div>
+          <div class="comp"><div class="cpdot"></div>Markdown Strategy &amp; Clearance Management</div>
+          <div class="comp"><div class="cpdot"></div>E-commerce &amp; Omnichannel Merchandising</div>
+          <div class="comp"><div class="cpdot"></div>Visual Merchandising &amp; Store Layout Optimization</div>
+          <div class="comp"><div class="cpdot"></div>Inventory Management &amp; Stock Optimization</div>
+          <div class="comp"><div class="cpdot"></div>Pricing Strategy &amp; Margin Analysis</div>
+          <div class="comp"><div class="cpdot"></div>Promotional Planning &amp; Campaign Execution</div>
+          <div class="comp"><div class="cpdot"></div>Data Analytics (Excel, SQL, Python)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="sec" id="experience">
+    <div class="sh"><span class="sl">Experience</span><div class="sr"></div></div>
+    <div class="st">Career Timeline</div>
+    <div class="si">7+ years across UAE and India's top retail and e-commerce organisations, spanning marketplace buying, branded fashion, beauty, and home categories.</div>
+    <div class="tl">
+      <div class="tlspine"></div>
+      <div class="tli">
+        <div class="tlm"><div class="tldot cur"></div></div>
+        <div class="tlb">
+          <div class="tlco">FunkySouq · UAE</div>
+          <div class="tlr">Buying Manager</div>
+          <div class="tlm2"><span>Aug 2025 – Present</span><span>Multi-vendor e-commerce marketplace</span></div>
+          <div class="tlabout">FunkySouq is a UAE-based multi-vendor marketplace platform covering fashion, sports, beauty and lifestyle categories — onboarding both global and emerging brands for the regional online market.</div>
+          <ul class="tlul">
+            <li>Build and manage product assortment strategy across fashion, sports, beauty and lifestyle categories</li>
+            <li>Identify, onboard, and negotiate with vendors — global brands (Puma, Adidas, Tommy Hilfiger, Skechers, Superdry) and emerging regional labels</li>
+            <li>Define and execute marketplace buying strategy to increase sales volume and improve category profitability</li>
+            <li>Collaborate with marketing and operations for accurate listings, stock availability, and timely fulfilment</li>
+            <li>Track KPIs: sales growth, gross margin, stock levels, and vendor performance scorecards</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tli">
+        <div class="tlm"><div class="tldot"></div></div>
+        <div class="tlb">
+          <div class="tlco">Landmark Group (Styli) · Bangalore, India</div>
+          <div class="tlr">Asst. Manager — Buying &amp; Merchandising</div>
+          <div class="tlm2"><span>Oct 2023 – Jul 2025</span><span>Brands &amp; Private Label · Fashion</span></div>
+          <div class="tlabout">Styli is Landmark Group's digital-first fashion platform — 25,000+ styles across UAE, KSA, Kuwait and Bahrain. Landmark Group operates 2,200+ outlets with $5B annual revenue.</div>
+          <ul class="tlul">
+            <li>Managed end-to-end buying across apparel, accessories, and footwear — branded and private label</li>
+            <li>Led cost negotiations and vendor management to achieve target assortment and margin goals</li>
+            <li>Planned seasonal merchandise flow, allocations, and replenishment to maximize sell-through</li>
+            <li>Conducted sales and stock analysis using Excel and Python to minimize aged inventory</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tli">
+        <div class="tlm"><div class="tldot"></div></div>
+        <div class="tlb">
+          <div class="tlco">Apparel Group (6th Street &amp; Nessa) · Bangalore, India</div>
+          <div class="tlr">Asst. Buyer &amp; Merchandiser — Health, Beauty &amp; Home</div>
+          <div class="tlm2"><span>Mar 2020 – Sep 2023</span><span>3.5 years · Beauty, Health &amp; Home</span></div>
+          <div class="tlabout">Apparel Group: 2,100+ stores, 85+ brands including Tommy Hilfiger, Calvin Klein, Levi's and Victoria's Secret across the GCC.</div>
+          <ul class="tlul">
+            <li>Oversaw sourcing, category planning, and PO execution for beauty and home divisions</li>
+            <li>Developed assortment plans, space allocation and product placement strategies for 30+ brands</li>
+            <li>Managed full product lifecycles from launch through to clearance</li>
+            <li>Monitored inventory health metrics and implemented actions to optimize stock and improve turnover</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tli">
+        <div class="tlm"><div class="tldot"></div></div>
+        <div class="tlb">
+          <div class="tlco">DG Technologies · Bangalore, India</div>
+          <div class="tlr">Data Analyst (Intern)</div>
+          <div class="tlm2"><span>Aug 2019 – Feb 2020</span></div>
+          <ul class="tlul">
+            <li>Data analysis using Python, SQL, and Excel to extract business insights</li>
+            <li>Statistical modeling and visualization for operational performance tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDS -->
+  <div class="sec" id="brands">
+    <div class="sh"><span class="sl">Brand Portfolio</span><div class="sr"></div></div>
+    <div class="st">Brands Managed</div>
+    <div class="si">Buying, merchandising and vendor management across 34 global and regional brands spanning sports, fashion, beauty, and home categories.</div>
+    <div class="bwrap">
+      <div class="bgc">
+        <div class="bgch"><div class="bgct">FunkySouq Marketplace — Current Role (Buying Manager)</div><div class="bgcp">Aug 2025 – Present</div></div>
+        <div class="bgcb">
+          <div class="bpills">
+            <span class="bp bph">Puma</span><span class="bp bph">Adidas</span><span class="bp bph">Skechers</span><span class="bp bph">Tommy Hilfiger</span><span class="bp bph">Superdry</span>
+            <span class="bp bpm">Hummel</span><span class="bp">SHUOOR</span><span class="bp">Ajmal Perfumes</span><span class="bp">SWING</span><span class="bp">Amaya</span>
+            <span class="bp">HEY KYLA</span><span class="bp">IKKXA</span><span class="bp">Bonkers</span><span class="bp">Urban Monkey</span><span class="bp">F5 Global</span>
+            <span class="bp">Marc Aurel</span><span class="bp">Bear House</span>
+          </div>
+        </div>
+      </div>
+      <div class="bgc">
+        <div class="bgch"><div class="bgct">Apparel Group (6th Street &amp; Nessa) — Health, Beauty &amp; Home</div><div class="bgcp">Mar 2020 – Sep 2023</div></div>
+        <div class="bgcb">
+          <div class="bpills">
+            <span class="bp bph">Tommy Hilfiger</span><span class="bp bph">Calvin Klein</span><span class="bp bph">Levi's</span><span class="bp bph">Victoria's Secret</span><span class="bp bph">LC Waikiki</span>
+            <span class="bp bpm">Beverly Hills Polo Club</span><span class="bp bpm">Aéropostale</span><span class="bp bpm">R&amp;B Fashion</span><span class="bp bpm">Forever New</span><span class="bp bpm">Barbour</span>
+            <span class="bp bpm">BCBGMAXAZRIA</span><span class="bp">New Yorker</span><span class="bp">Ardene</span><span class="bp">Koton</span><span class="bp">Hackett London</span>
+            <span class="bp">F5 Global</span><span class="bp">La Vie En Rose</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="sec" id="skills">
+    <div class="sh"><span class="sl">Skills</span><div class="sr"></div></div>
+    <div class="st">Core Expertise</div>
+    <div class="skgrid" style="margin-bottom:2rem">
+      <div class="skc"><div class="skih">📦</div><div class="skn">Assortment Planning</div><div class="skd">Range architecture, product mix optimization, space allocation across online and offline retail</div></div>
+      <div class="skc"><div class="skih">🤝</div><div class="skn">Vendor Management</div><div class="skd">End-to-end supplier partnerships — negotiation, onboarding, performance tracking, cost reduction</div></div>
+      <div class="skc"><div class="skih">📊</div><div class="skn">Data Analytics</div><div class="skd">Excel, SQL, Python — sell-through analysis, margin modelling, inventory reporting, forecasting</div></div>
+      <div class="skc"><div class="skih">🛒</div><div class="skn">Marketplace Buying</div><div class="skd">Multi-vendor marketplace strategy, seller onboarding, listing management, digital-first categories</div></div>
+      <div class="skc"><div class="skih">🏬</div><div class="skn">Visual Merchandising</div><div class="skd">Store layout planning, seasonal display execution, planograms and in-store experience</div></div>
+      <div class="skc"><div class="skih">📅</div><div class="skn">Inventory &amp; Markdown</div><div class="skd">Stock optimization, replenishment planning, clearance and markdown strategy</div></div>
+    </div>
+    <div class="sl" style="margin-bottom:14px">Technical Stack</div>
+    <div class="techrow">
+      <span class="tp">MS Excel</span><span class="tp">SQL</span><span class="tp">Python</span>
+      <span class="tp sec2">Oracle</span><span class="tp sec2">Magento</span><span class="tp sec2">R</span>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="sec" id="education">
+    <div class="sh"><span class="sl">Education &amp; Certifications</span><div class="sr"></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div>
+        <div class="sl" style="margin-bottom:14px">Education</div>
+        <div class="ecards">
+          <div class="ecard"><div class="edeg">Bachelor of Science — Physics, Mathematics &amp; Statistics</div><div class="esch">MES Degree College of Arts, Commerce &amp; Science, Bangalore</div></div>
+          <div class="ecard"><div class="edeg">Pre-University Course in PCMC</div><div class="esch">Sree Ayyappa Composite PU College, Bangalore</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sl" style="margin-bottom:14px">Certifications</div>
+        <div class="certlist">
+          <div class="certi"><div class="certb">✓</div><div><div class="certn">Master Python for Data Science and Machine Learning</div><div class="certi2">EduGrad</div></div></div>
+          <div class="certi"><div class="certb">✓</div><div><div class="certn">Office Management</div><div class="certi2">KEONICS — A Grade</div></div></div>
+          <div class="certi"><div class="certb">✓</div><div><div class="certn">Business and Negotiation Skills</div><div class="certi2">Pace Changers</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="sec" id="languages">
+    <div class="sh"><span class="sl">Languages</span><div class="sr"></div></div>
+    <div class="lgrid">
+      <div class="lc"><div class="ln">Malayalam</div><div class="ll">Native</div></div>
+      <div class="lc"><div class="ln">English</div><div class="ll">Proficient</div></div>
+      <div class="lc"><div class="ln">Hindi</div><div class="ll">Proficient</div></div>
+      <div class="lc"><div class="ln">Kannada</div><div class="ll">Proficient</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="qsec">
+  <div class="qi">
+    <div class="qmark">"</div>
+    <div class="qtxt">Strategic buyer with deep hands-on experience across UAE and India retail markets — from negotiating with global heritage brands to onboarding emerging marketplace sellers. I bring both the analytical rigour and the commercial instinct that modern buying demands.</div>
+    <div class="qsig">Keerthana Suresh &nbsp;·&nbsp; Buying &amp; Merchandising Manager</div>
+  </div>
+</div>
+
+<footer>
+  <div class="fi">
+    <div class="fn">Keerthana Suresh &nbsp;·&nbsp; Portfolio 2026</div>
+    <div class="flinks">
+      <a href="mailto:keerthanasuresh788@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/keerthana-suresh-0b20891a0" target="_blank">LinkedIn</a>
+      <a href="tel:+971503019357">+971 503 019 357</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const N='#1a2744',G='#c9a84c',GL='#f0dfa0',M='#6b6b67';
+Chart.defaults.font.family="'DM Sans',sans-serif";
+Chart.defaults.color=M;
+
+new Chart(document.getElementById('tenureChart'),{
+  type:'bar',
+  data:{
+    labels:['DG Technologies','Apparel Group','Landmark Group','FunkySouq'],
+    datasets:[{data:[7,42,22,8],backgroundColor:['rgba(26,39,68,.15)','rgba(26,39,68,.45)','rgba(26,39,68,.7)',G],borderRadius:6,borderSkipped:false}]
+  },
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} months`}}},scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:11}},title:{display:true,text:'Months',font:{size:11}}},y:{grid:{display:false},ticks:{font:{size:11}}}}}
+});
+
+new Chart(document.getElementById('radarChart'),{
+  type:'radar',
+  data:{
+    labels:['Buying Strategy','Vendor Mgmt','Data Analytics','Visual Merch','Inventory','E-commerce','Negotiation'],
+    datasets:[{data:[92,90,82,88,90,85,88],backgroundColor:'rgba(201,168,76,.15)',borderColor:G,borderWidth:2,pointBackgroundColor:G,pointRadius:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{r:{min:60,max:100,ticks:{stepSize:10,display:false},grid:{color:'rgba(0,0,0,.08)'},pointLabels:{font:{size:10},color:N}}}}
+});
+
+new Chart(document.getElementById('categoryChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Fashion & Apparel','Beauty & Health','Sports & Lifestyle','Home & Living','Data / Analytics'],
+    datasets:[{data:[35,25,25,10,5],backgroundColor:[N,G,'#3d5a8a','#8fa3c0','rgba(201,168,76,.3)'],borderWidth:0,hoverOffset:6}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10,padding:10}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw}%`}}}}
+});
+
+new Chart(document.getElementById('brandCountChart'),{
+  type:'bar',
+  data:{
+    labels:['DG Technologies','Apparel Group','Landmark Group','FunkySouq'],
+    datasets:[{label:'Brands managed',data:[0,17,12,17],backgroundColor:['rgba(26,39,68,.1)','rgba(26,39,68,.45)','rgba(26,39,68,.7)',G],borderRadius:6,borderSkipped:false}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} brands`}}},scales:{y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:11}},title:{display:true,text:'Brands',font:{size:11}}},x:{grid:{display:false},ticks:{font:{size:11}}}}}
+});
+
+new Chart(document.getElementById('formatChart'),{
+  type:'polarArea',
+  data:{
+    labels:['Online Marketplace','E-commerce Platform','Brick & Mortar','Omnichannel','Multi-brand Retail'],
+    datasets:[{data:[85,80,75,70,80],backgroundColor:['rgba(201,168,76,.8)','rgba(26,39,68,.75)','rgba(26,39,68,.45)','rgba(201,168,76,.4)','rgba(26,39,68,.25)'],borderWidth:0}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw}%`}}},scales:{r:{ticks:{display:false},grid:{color:'rgba(0,0,0,.06)'}}}}
+});
+
+new Chart(document.getElementById('progressionChart'),{
+  type:'line',
+  data:{
+    labels:['2019','2020','2021','2022','2023','2024','2025','2026'],
+    datasets:[
+      {label:'Seniority Level',data:[1,2,2.5,3,3.5,4,4.5,5],borderColor:G,backgroundColor:'rgba(201,168,76,.08)',borderWidth:2.5,pointBackgroundColor:G,pointRadius:5,fill:true,tension:.4},
+      {label:'Brands Managed',data:[0,5,12,17,17,14,17,17],borderColor:N,backgroundColor:'transparent',borderWidth:2,pointBackgroundColor:N,pointRadius:4,fill:false,tension:.4,yAxisID:'y2'}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:14,padding:16}},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10},callback:v=>['','Intern','Junior','Mid','Asst.Mgr','Manager'][Math.round(v)]||''},min:0,max:5.5,title:{display:true,text:'Seniority',font:{size:10}}},y2:{position:'right',grid:{display:false},ticks:{font:{size:10}},title:{display:true,text:'Brands',font:{size:10}}}}}
+});
+
+const brands=[
+  {n:'Puma',c:'Sports',l:4},{n:'Adidas',c:'Sports',l:4},{n:'Tommy H.',c:'Fashion',l:4},{n:'Calvin Klein',c:'Fashion',l:4},{n:"Levi's",c:'Denim',l:4},
+  {n:'Skechers',c:'Footwear',l:3},{n:'Superdry',c:'Fashion',l:3},{n:"Victoria's",c:'Lingerie',l:3},{n:'LC Waikiki',c:'Fashion',l:3},{n:'Ajmal',c:'Perfumes',l:3},
+  {n:'BCBG',c:'Fashion',l:2},{n:'Hummel',c:'Sports',l:2},{n:'Barbour',c:'Fashion',l:2},{n:'Forever New',c:'Fashion',l:2},{n:'La Vie En Rose',c:'Beauty',l:2},
+  {n:'BHPC',c:'Fashion',l:2},{n:'Aéropostale',c:'Fashion',l:2},{n:'Hackett',c:'Fashion',l:2},{n:'Urban Monkey',c:'Accessories',l:1},{n:'Marc Aurel',c:'Fashion',l:1},
+  {n:'Bear House',c:'Fashion',l:1},{n:'F5 Global',c:'Fashion',l:1},{n:'R&B Fashion',c:'Fashion',l:1},{n:'Koton',c:'Fashion',l:1},{n:'New Yorker',c:'Fashion',l:1}
+];
+const hm=document.getElementById('heatmap');
+brands.forEach(b=>{
+  const d=document.createElement('div');
+  d.className=`hc l${b.l}`;
+  d.innerHTML=`<div class="hn">${b.n}</div><div class="hcat">${b.c}</div>`;
+  hm.appendChild(d);
+});
+
+setTimeout(()=>{
+  document.querySelectorAll('.sbfill').forEach(b=>{ b.style.width=b.dataset.w+'%'; });
+},400);
+</script>
+</body>
+</html>
